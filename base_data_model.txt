@@ -1,0 +1,105 @@
+Data model = base_data_model
+
+Tables and Entities
+
+    customers
+        CustomerID
+        FirstName
+        LastName
+        FullName
+
+    employees
+        EmployeeID
+        ManagerID
+        FirstName
+        LastName
+        FullName
+        JobTitle
+        OrganizationLevel
+        MaritalStatus
+        Gender
+        Territory
+        Country
+        Group
+
+    orders
+        SalesOrderID
+        SalesOrderDetailID
+        OrderDate
+        DueDate
+        ShipDate
+        EmployeeID
+        CustomerID
+        SubTotal
+        TaxAmt
+        Freight
+        TotalDue
+        ProductID
+        OrderQty
+        UnitPrice
+        UnitPriceDiscount
+        LineTotal
+
+    productcategories
+        CategoryID
+        CategoryName
+
+    products
+        ProductID
+        ProductNumber
+        ProductName
+        ModelName
+        MakeFlag
+        StandardCost
+        ListPrice
+        SubCategoryID
+
+    productsubcategories
+        SubCategoryID
+        CategoryID
+        SubCategoryName
+
+    vendorproduct
+        ProductID
+        VendorID
+
+    vendors
+        VendorID
+        VendorName
+        AccountNumber
+        CreditRating
+        ActiveFlag
+
+Relationships Between Tables
+
+    customers and orders
+        customers.CustomerID is linked to orders.CustomerID
+        This relationship indicates which customer placed which order.
+
+    employees and orders
+        employees.EmployeeID is linked to orders.EmployeeID
+        This relationship indicates which employee handled a specific order.
+
+    products and orders
+        products.ProductID is linked to orders.ProductID
+        This relationship shows which products are included in each order.
+
+    productsubcategories and products
+        productsubcategories.SubCategoryID is linked to products.SubCategoryID
+        This relationship shows which subcategory each product belongs to.
+
+    productcategories and productsubcategories
+        productcategories.CategoryID is linked to productsubcategories.CategoryID
+        This relationship categorizes each subcategory under a broader category.
+
+    vendorproduct and products
+        vendorproduct.ProductID is linked to products.ProductID
+        This relationship shows which vendors supply which products.
+
+    vendors and vendorproduct
+        vendors.VendorID is linked to vendorproduct.VendorID
+        This relationship links vendors with the specific products they supply.
+
+    employees (hierarchical relationship)
+        employees.ManagerID is linked to employees.EmployeeID
+        This represents a hierarchical relationship where each employee can have a manager who is also an employee.
